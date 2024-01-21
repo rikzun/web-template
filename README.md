@@ -1,5 +1,5 @@
-My alternative for CRA
-Uses NodeJS verion 20.11.0
-
-Edit `index.html` before development starts
+My alternative for CRA<br>
+Uses NodeJS verion 20.11.0<br>
+<br><br>
+Edit `index.html` before development starts<br>
 Edit `robots.txt` if necessary
