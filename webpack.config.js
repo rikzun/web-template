@@ -69,17 +69,15 @@ module.exports = (env) => {
                 chunkFilename: '[name].[chunkhash:8].css'
             }),
             new CopyWebpackPlugin({
-                patterns: [
-                    {
-                        from: PATH_PUBLIC_FOLDER,
-                        filter: (filepath) => {
-                            switch (path.normalize(filepath).substring(PATH_PUBLIC_FOLDER.length + 1)) {
-                                case 'index.html': return false
-                                default: return true
-                            }
+                patterns: [{
+                    from: PATH_PUBLIC_FOLDER,
+                    filter: (filepath) => {
+                        switch (path.normalize(filepath).substring(PATH_PUBLIC_FOLDER.length + 1)) {
+                            case 'index.html': return false
+                            default: return true
                         }
                     }
-                ]
+                }]
             })
         ]
     }
