@@ -27,8 +27,9 @@ module.exports = (env) => {
             publicPath: 'auto'
         },
         resolve: {
-            extensions: ['.js', 'jsx', '.ts', '.tsx', '.css', '.scss', '.sass'],
-            fallback: { process: false }
+            extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss', '.sass'],
+            fallback: { process: false },
+            modules: [__dirname, 'node_modules']
         },
         devServer: {
             hot: true,
