@@ -4,18 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const ReactRefreshTypeScript = require('react-refresh-typescript')
-const CopyWebpackPlugin = require("copy-webpack-plugin")
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production'
+const IS_SERVE = process.env.WEBPACK_SERVE ?? false
 
 const PATH_ENTRY = path.join(__dirname, 'src', 'index.tsx')
 const PATH_TEMPLATE_ENTRY = path.join(__dirname, 'public', 'index.html')
 const PATH_PUBLIC_FOLDER = path.join(__dirname, 'public')
 const PATH_OUTPUT_FOLDER = path.join(__dirname, 'build')
 
-module.exports = (env) => {
-    const IS_SERVE = env.WEBPACK_SERVE ?? false
-    
+module.exports = () => {
     const config = {
         mode: IS_DEVELOPMENT ? 'development' : 'production',
         devtool: IS_DEVELOPMENT ? 'source-map' : undefined,
@@ -55,7 +54,7 @@ module.exports = (env) => {
                 {
                     test: /\.svg$/i,
                     issuer: /\.[jt]sx?$/,
-                    use: ["@svgr/webpack"]
+                    use: ['@svgr/webpack']
                 }
             ]
         },
