@@ -102,7 +102,7 @@ module.exports = () => {
     if (IS_DEVELOPMENT && IS_SERVE) {
         config.plugins.push(new ReactRefreshWebpackPlugin())
         config.module.rules[0].use[0] = {
-            loader: require.resolve('ts-loader'),
+            loader: 'ts-loader',
             options: {
                 getCustomTransformers: () => ({
                     before: [ReactRefreshTypeScript()]
