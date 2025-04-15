@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-const ReactRefreshTypeScript = require('react-refresh-typescript')
+const ReactRefreshTypeScript = require('react-refresh-typescript').default
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production'
@@ -25,10 +25,27 @@ module.exports = () => {
             chunkFilename: '[name].[chunkhash:8].js',
             publicPath: 'auto'
         },
+        optimization: {
+            splitChunks: {
+                chunks: 'all',
+                cacheGroups: {
+                    vendor: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendors',
+                        chunks: 'all'
+                    }
+                }
+            },
+            runtimeChunk: 'single'
+        },
         resolve: {
             extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss', '.sass'],
             fallback: { process: false },
-            modules: [__dirname, 'node_modules']
+            modules: [__dirname, 'node_modules'],
+            alias: {
+                '@assets': path.resolve(__dirname, 'src/assets'),
+                '@components': path.resolve(__dirname, 'src/components')
+            }
         },
         devServer: {
             hot: true,
@@ -45,7 +62,7 @@ module.exports = () => {
                 },
                 {
                     test: /\.s?[ca]ss$/i,
-                    use: ['style-loader', 'css-loader', 'sass-loader']
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
                 },
                 {
                     test: /\.(png|jpe?g|gif|webp|ico)$/i,
@@ -65,8 +82,8 @@ module.exports = () => {
                 filename: 'index.html?[fullhash:8]'
             }),
             new MiniCssExtractPlugin({
-                filename: '[name].[fullhash:8].css',
-                chunkFilename: '[name].[chunkhash:8].css'
+                filename: IS_DEVELOPMENT ? '[name].css' : '[name].[contenthash:8].css',
+                chunkFilename: IS_DEVELOPMENT ? '[id].css' : '[id].[contenthash:8].css',
             }),
             new CopyWebpackPlugin({
                 patterns: [{
@@ -85,12 +102,12 @@ module.exports = () => {
     if (IS_DEVELOPMENT && IS_SERVE) {
         config.plugins.push(new ReactRefreshWebpackPlugin())
         config.module.rules[0].use[0] = {
-            loader: 'ts-loader',
+            loader: require.resolve('ts-loader'),
             options: {
                 getCustomTransformers: () => ({
                     before: [ReactRefreshTypeScript()]
                 }),
-                transpileOnly: true
+                transpileOnly: false
             }
         }
     }
