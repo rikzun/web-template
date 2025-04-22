@@ -1,0 +1,22 @@
+/*!*************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/App.style.scss ***!
+  \*************************************************************************************************************/
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+body > #root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+  width: inherit;
+}
+body > #root > iframe {
+  height: 100%;
+  width: 100%;
+  border: unset;
+}
+
+/*# sourceMappingURL=main.css.map*/
