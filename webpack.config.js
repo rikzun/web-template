@@ -1,10 +1,11 @@
 const path = require('path')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const ReactRefreshTypeScript = require('react-refresh-typescript').default
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production'
 const IS_SERVE = process.env.WEBPACK_SERVE ?? false
@@ -24,6 +25,12 @@ module.exports = () => {
             filename: '[name].[fullhash:8].js',
             chunkFilename: '[name].[chunkhash:8].js',
             publicPath: 'auto'
+        },
+        cache: {
+            type: 'filesystem',
+            buildDependencies: {
+                config: [__filename]
+            }
         },
         optimization: {
             splitChunks: {
@@ -76,6 +83,7 @@ module.exports = () => {
             ]
         },
         plugins: [
+            new ForkTsCheckerWebpackPlugin(),
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 template: PATH_TEMPLATE_ENTRY,
@@ -106,8 +114,7 @@ module.exports = () => {
             options: {
                 getCustomTransformers: () => ({
                     before: [ReactRefreshTypeScript()]
-                }),
-                transpileOnly: false
+                })
             }
         }
     }
