@@ -2,7 +2,7 @@
 
 A modern React starter using the latest versions of all key dependencies.
 
-## Performance (on my machine)
+## Performance
 
 - **Build (no cache):** ~1798ms
 - **Build (with cache):** ~1646ms
@@ -11,6 +11,13 @@ A modern React starter using the latest versions of all key dependencies.
 - **Hot update:** ~94ms
 
 *Each value is the median of 20 measurements for each item above.*
+
+**Test machine:**
+- **CPU**: Intel Core i7-11370H
+- **RAM**: 32GB DDR4 SDRAM
+- **SSD**: Samsung 970 EVO Plus NVMe
+- **OS**: Windows 11 Pro, version 24H2
+- **Node.js**: v20.12.2
 
 ## Notes
 
