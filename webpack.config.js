@@ -18,6 +18,7 @@ const PATH_SOURCE_ENTRY = path.join(PATH_SOURCE_FOLDER, 'index.tsx')
 
 const ALIAS_ASSETS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'assets')
 const ALIAS_COMPONENTS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'components')
+const ALIAS_UTILS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'utils')
 
 module.exports = () => {
     const config = {
@@ -57,7 +58,8 @@ module.exports = () => {
             modules: [__dirname, PATH_SOURCE_FOLDER, 'node_modules'],
             alias: {
                 '@assets': ALIAS_ASSETS_FOLDER,
-                '@components': ALIAS_COMPONENTS_FOLDER
+                '@components': ALIAS_COMPONENTS_FOLDER,
+                '@utils': ALIAS_UTILS_FOLDER
             }
         },
         devServer: {
