@@ -54,7 +54,7 @@ module.exports = () => {
         resolve: {
             extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss', '.sass'],
             fallback: { process: false },
-            modules: [PATH_SOURCE_FOLDER, 'node_modules'],
+            modules: [__dirname, PATH_SOURCE_FOLDER, 'node_modules'],
             alias: {
                 '@assets': ALIAS_ASSETS_FOLDER,
                 '@components': ALIAS_COMPONENTS_FOLDER
