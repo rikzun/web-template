@@ -17,7 +17,7 @@ A modern React starter using the latest versions of all key dependencies.
 - **RAM**: 32GB DDR4 SDRAM
 - **SSD**: Samsung 970 EVO Plus NVMe
 - **OS**: Windows 11 Pro, version 24H2
-- **Node.js**: v20.12.2
+- **Node.js**: v22.16.0
 
 ## Notes
 
