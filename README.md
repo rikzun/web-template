@@ -17,7 +17,7 @@ A modern React starter using the latest versions of all key dependencies.
 - All main configuration is in `webpack.config.js` and can be easily tweaked.
 - Use absolute imports via aliases like `@components`, `@assets`, etc.
 - Place static files and favicons in `public`.
-- Edit `public/index.html` before you begin development
+- Edit `public/index.html` before you begin development.
 - By default, `public/robots.txt` is set to disallow all bots.
 
 ---
