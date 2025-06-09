@@ -77,7 +77,7 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.[jt]sx?$/,
+                test: /\.[jt]sx?$/i,
                 exclude: PATH_NODE_MODULES_FOLDER,
                 use: {
                     loader: 'swc-loader',
@@ -103,7 +103,7 @@ const config = {
             },
             {
                 test: /\.svg$/i,
-                issuer: /\.[jt]sx?$/,
+                issuer: /\.[jt]sx?$/i,
                 use: '@svgr/webpack'
             },
             {
