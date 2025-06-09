@@ -1,0 +1,28 @@
+{
+  "include": ["src", "assets.ts"],
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noEmit": true,
+    "sourceMap": true,
+    "module": "esnext",
+    "target": "es6",
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@assets": ["src/assets"],
+      "@assets/*": ["src/assets/*"],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@utils": ["src/utils"],
+      "@utils/*": ["src/utils/*"]
+    }
+  }
+}

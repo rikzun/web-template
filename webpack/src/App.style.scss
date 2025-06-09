@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+
+    > #root {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: inherit;
+        width: inherit;
+
+        > iframe {
+            height: 100%;
+            width: 100%;
+            border: unset;
+        }
+    }
+}
