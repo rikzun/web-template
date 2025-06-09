@@ -1,9 +1,13 @@
-const path = require('path')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+import path from 'path'
+import { fileURLToPath } from 'url'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const IS_DEVELOPMENT = process.env.NODE_ENV !== 'production'
 const IS_SERVE = process.env.WEBPACK_SERVE == 'true'
@@ -14,10 +18,13 @@ const PATH_PUBLIC_FOLDER = path.join(__dirname, 'public')
 const PATH_PUBLIC_ENTRY = path.join(PATH_PUBLIC_FOLDER, 'index.html')
 const PATH_SOURCE_FOLDER = path.join(__dirname, 'src')
 const PATH_SOURCE_ENTRY = path.join(PATH_SOURCE_FOLDER, 'index.tsx')
+const PATH_TS_CONFIG = path.join(__dirname, 'tsconfig.json')
 
 const ALIAS_ASSETS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'assets')
 const ALIAS_COMPONENTS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'components')
 const ALIAS_UTILS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'utils')
+
+const vendorTest = new RegExp('^' + PATH_NODE_MODULES_FOLDER.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
 
 /** @type {import('webpack').Configuration | import('webpack-dev-server').Configuration} */
 const config = {
@@ -34,26 +41,24 @@ const config = {
     cache: {
         type: 'filesystem',
         buildDependencies: {
-            config: [__filename]
+            config: [__filename, PATH_TS_CONFIG]
         }
     },
     optimization: {
+        runtimeChunk: 'single',
         splitChunks: {
             chunks: 'all',
             cacheGroups: {
                 vendor: {
                     name: 'vendors',
                     chunks: 'all',
-                    test: (module) => {
-                        return module?.resource?.startsWith(PATH_NODE_MODULES_FOLDER)
-                    }
+                    test: vendorTest
                 }
             }
-        },
-        runtimeChunk: 'single'
+        }        
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss', '.sass'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.css', '.scss', '.sass'],
         fallback: { process: false },
         modules: [__dirname, PATH_SOURCE_FOLDER, 'node_modules'],
         alias: {
@@ -97,13 +102,13 @@ const config = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             {
-                test: /\.(png|jpe?g|gif|webp|ico|woff2?|eot|ttf|otf)$/i,
-                type: 'asset/resource'
-            },
-            {
                 test: /\.svg$/i,
                 issuer: /\.[jt]sx?$/,
-                use: ['@svgr/webpack']
+                use: '@svgr/webpack'
+            },
+            {
+                test: /\.(png|jpe?g|gif|webp|ico|woff2?|eot|ttf|otf)$/i,
+                type: 'asset/resource'
             }
         ]
     },
