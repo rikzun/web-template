@@ -2,25 +2,8 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin } from "@rspack/core"
 import { default as ReactRefreshRspackPlugin } from "@rspack/plugin-react-refresh"
-import type { Configuration } from '@rspack/core'
+import type { Configuration, NormalModule } from '@rspack/core'
 import type { Config as SwcConfig } from '@rspack/core/compiled/@swc/types'
-
-export class BuildTimeInMsPlugin {
-    apply(compiler) {
-        let start: number;
-        compiler.hooks.compile.tap('BuildTimeInMsPlugin', () => {
-            start = Date.now();
-        });
-        compiler.hooks.done.tap('BuildTimeInMsPlugin', (stats) => {
-            const ms = Date.now() - start;
-            if (stats.hasErrors()) {
-                console.log(`Build failed in ${ms} ms`);
-            } else {
-                console.log(`Built in ${ms} ms`);
-            }
-        });
-    }
-}
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -41,7 +24,6 @@ const ALIAS_COMPONENTS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'components')
 const ALIAS_UTILS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'utils')
 
 const targets = ["last 2 versions", "> 0.2%", "not dead", "Firefox ESR"]
-const vendorTest = new RegExp('^' + PATH_NODE_MODULES_FOLDER.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
 
 const config: Configuration = {
     mode: IS_DEVELOPMENT ? 'development' : 'production',
@@ -63,7 +45,8 @@ const config: Configuration = {
                 vendor: {
                     name: 'vendors',
                     chunks: 'all',
-                    test: vendorTest
+                    test: (module) => (module as NormalModule).resource
+                        ?.startsWith(PATH_NODE_MODULES_FOLDER) ?? false
                 }
             }
         },
@@ -141,8 +124,6 @@ const config: Configuration = {
         IS_DEVELOPMENT
             ? new ReactRefreshRspackPlugin()
             : null
-            ,
-            new BuildTimeInMsPlugin()
     ],
     experiments: {
 		css: true,

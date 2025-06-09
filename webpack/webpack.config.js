@@ -24,9 +24,7 @@ const ALIAS_ASSETS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'assets')
 const ALIAS_COMPONENTS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'components')
 const ALIAS_UTILS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'utils')
 
-const vendorTest = new RegExp('^' + PATH_NODE_MODULES_FOLDER.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
-
-/** @type {import('webpack').Configuration | import('webpack-dev-server').Configuration} */
+/** @type {import('webpack').Configuration} */
 const config = {
     mode: IS_DEVELOPMENT ? 'development' : 'production',
     devtool: IS_DEVELOPMENT ? 'source-map' : false,
@@ -52,7 +50,8 @@ const config = {
                 vendor: {
                     name: 'vendors',
                     chunks: 'all',
-                    test: vendorTest
+                    test: (module) => module.resource
+                        ?.startsWith(PATH_NODE_MODULES_FOLDER) ?? false
                 }
             }
         }        
@@ -67,6 +66,7 @@ const config = {
             '@utils': ALIAS_UTILS_FOLDER
         }
     },
+    /** @type {import('webpack-dev-server').Configuration} */
     devServer: {
         hot: true,
         open: true,
