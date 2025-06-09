@@ -4,7 +4,7 @@
   "author": "rikzun",
   "scripts": {
     "start": "webpack serve --progress",
-    "build": "webpack build --progress"
+    "build": "cross-env NODE_ENV=production webpack build --progress"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -17,8 +17,8 @@
     "@types/node": "^22.15.30",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
-    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^13.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
     "html-webpack-plugin": "^5.6.3",

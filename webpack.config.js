@@ -1,6 +1,5 @@
 const path = require('path')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -29,7 +28,8 @@ module.exports = () => {
             path: PATH_OUTPUT_FOLDER,
             filename: '[name].[fullhash:8].js',
             chunkFilename: '[name].[chunkhash:8].js',
-            publicPath: 'auto'
+            publicPath: 'auto',
+            clean: true
         },
         cache: {
             type: 'filesystem',
@@ -109,7 +109,6 @@ module.exports = () => {
         },
         plugins: [
             new ForkTsCheckerWebpackPlugin(),
-            new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 template: PATH_PUBLIC_ENTRY,
                 filename: 'index.html?[fullhash:8]'
