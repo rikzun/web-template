@@ -1,5 +1,5 @@
 {
-  "include": ["src", "assets.ts"],
+  "include": ["src", "assets.d.ts"],
   "compilerOptions": {
     "strict": true,
     "noImplicitOverride": true,
