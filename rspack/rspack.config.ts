@@ -1,7 +1,8 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin } from "@rspack/core"
-import { default as ReactRefreshRspackPlugin } from "@rspack/plugin-react-refresh"
+import { TsCheckerRspackPlugin } from 'ts-checker-rspack-plugin'
+import ReactRefreshRspackPlugin from "@rspack/plugin-react-refresh"
 import type { Configuration, NormalModule } from '@rspack/core'
 import type { Config as SwcConfig } from '@rspack/core/compiled/@swc/types'
 
@@ -117,6 +118,7 @@ const config: Configuration = {
         ]
     },
     plugins: [
+        new TsCheckerRspackPlugin(),
         new HtmlRspackPlugin({
 			template: PATH_PUBLIC_ENTRY,
             filename: 'index.html?[fullhash:8]'

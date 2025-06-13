@@ -21,6 +21,7 @@
     "react-refresh": "^0.17.0",
     "sass-embedded": "^1.89.2",
     "sass-loader": "^16.0.5",
+    "ts-checker-rspack-plugin": "^1.1.4",
     "typescript": "^5.8.3"
   }
 }
