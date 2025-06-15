@@ -1,10 +1,10 @@
-import path from 'path'
-import { fileURLToPath } from 'url'
+import path from "path"
+import { fileURLToPath } from "url"
 import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin } from "@rspack/core"
-import { TsCheckerRspackPlugin } from 'ts-checker-rspack-plugin'
+import { TsCheckerRspackPlugin } from "ts-checker-rspack-plugin"
 import ReactRefreshRspackPlugin from "@rspack/plugin-react-refresh"
-import type { Configuration, NormalModule } from '@rspack/core'
-import type { Config as SwcConfig } from '@rspack/core/compiled/@swc/types'
+import type { Configuration, NormalModule } from "@rspack/core"
+import type { Config as SwcConfig } from "@rspack/core/compiled/@swc/types"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -24,7 +24,7 @@ const ALIAS_ASSETS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'assets')
 const ALIAS_COMPONENTS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'components')
 const ALIAS_UTILS_FOLDER = path.join(PATH_SOURCE_FOLDER, 'utils')
 
-const targets = ["last 2 versions", "> 0.2%", "not dead", "Firefox ESR"]
+const targets = ['last 2 versions', '> 0.2%', 'not dead', 'Firefox ESR']
 
 const config: Configuration = {
     mode: IS_DEVELOPMENT ? 'development' : 'production',
@@ -81,16 +81,16 @@ const config: Configuration = {
 				test: /\.[jt]sx?$/i,
                 exclude: PATH_NODE_MODULES_FOLDER,
 				use: {
-                    loader: "builtin:swc-loader",
+                    loader: 'builtin:swc-loader',
                     options: {
                         jsc: {
                             parser: {
-                                syntax: "typescript",
+                                syntax: 'typescript',
                                 tsx: true
                             },
                             transform: {
                                 react: {
-                                    runtime: "automatic",
+                                    runtime: 'automatic',
                                     development: IS_DEVELOPMENT,
                                     refresh: IS_DEVELOPMENT && IS_SERVE
                                 }
@@ -113,7 +113,7 @@ const config: Configuration = {
             },
             {
 				test: /\.svg$/i,
-				type: "asset"
+				type: 'asset'
 			}
         ]
     },

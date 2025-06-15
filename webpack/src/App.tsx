@@ -1,4 +1,4 @@
-import './App.style.scss'
+import "./App.style.scss"
 
 export function App() {
     const params = Object.entries({
