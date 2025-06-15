@@ -32,7 +32,7 @@ const config: Configuration = {
     entry: PATH_SOURCE_ENTRY,
     output: {
         path: PATH_OUTPUT_FOLDER,
-        filename: '[name].[fullhash:8].js',
+        filename: IS_SERVE ? '[name].js' : '[name].[fullhash:8].js',
         chunkFilename: '[name].[chunkhash:8].js',
         publicPath: 'auto',
         clean: true
