@@ -1,6 +1,7 @@
 import path from "path"
+import fs from "fs"
 import { fileURLToPath } from "url"
-import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin } from "@rspack/core"
+import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin, CopyRspackPlugin } from "@rspack/core"
 import { TsCheckerRspackPlugin } from "ts-checker-rspack-plugin"
 import ReactRefreshRspackPlugin from "@rspack/plugin-react-refresh"
 import type { Configuration, NormalModule } from "@rspack/core"
@@ -123,6 +124,14 @@ const config: Configuration = {
 			template: PATH_PUBLIC_ENTRY,
             filename: 'index.html?[fullhash:8]'
 		}),
+        new CopyRspackPlugin({
+            patterns: fs.readdirSync(PATH_PUBLIC_FOLDER, { withFileTypes: true }).map((file) => {
+                const location = path.join(file.parentPath, file.name)
+
+                if (file.isDirectory()) return { from: location, to: file.name }
+                return { from: location }
+            }).filter((location) => location.from != PATH_PUBLIC_ENTRY)
+        }),
         IS_DEVELOPMENT
             ? new ReactRefreshRspackPlugin()
             : null
