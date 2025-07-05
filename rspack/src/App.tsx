@@ -1,13 +1,19 @@
 import "./App.style.scss"
+import RspackLogo from "@assets/rspack-logo.svg"
+import videoURL from "@assets/hello there.mp4?url"
 
 export function App() {
-    const params = Object.entries({
-        cc_load_policy: 0,
-        controls: 2,
-        fs: 0,
-        rel: 0,
-        showinfo: 0
-    }).map(([key, value]) => `${key}=${value}`).join('&')
+    return (
+        <div className="container">
+            <RspackLogo className="logo" />
 
-    return <iframe src={'https://youtube.com/embed/BNflNL40T_M?' + params} />
+            <video
+                autoPlay
+                muted
+                controls
+                src={videoURL}
+                onLoadStart={(e) => e.currentTarget.volume = .4}
+            />
+        </div>
+    )
 }
