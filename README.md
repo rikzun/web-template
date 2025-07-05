@@ -21,7 +21,7 @@ This template provides two build system options: [**Webpack**](./webpack) and [*
 - **CPU:** Intel Core i7-11370H
 - **RAM:** 32GB DDR4 SDRAM
 - **SSD:** Samsung 970 EVO Plus NVMe
-- **OS:** Windows 11 Pro, version 24H21795 ms
+- **OS:** Windows 11 Pro, version 24H2
 - **Node.js:** v22.16.0
 
 ## Notes
