@@ -22,8 +22,10 @@ const PATH_SOURCE_ENTRY = path.join(PATH_SOURCE_FOLDER, "index.tsx")
 const PATH_TS_CONFIG = path.join(__dirname, "tsconfig.json")
 
 const ALIAS_ASSETS_FOLDER = path.join(PATH_SOURCE_FOLDER, "assets")
+const ALIAS_ATOMS_FOLDER = path.join(PATH_SOURCE_FOLDER, "atoms")
 const ALIAS_COMPONENTS_FOLDER = path.join(PATH_SOURCE_FOLDER, "components")
 const ALIAS_UTILS_FOLDER = path.join(PATH_SOURCE_FOLDER, "utils")
+const ALIAS_WORKERS_FOLDER = path.join(PATH_SOURCE_FOLDER, "workers")
 
 const targets = ["last 2 versions", "> 0.2%", "not dead", "Firefox ESR"]
 
@@ -65,8 +67,10 @@ const config: Configuration = {
         modules: [__dirname, PATH_SOURCE_FOLDER, PATH_NODE_MODULES_FOLDER],
         alias: {
             "@assets": ALIAS_ASSETS_FOLDER,
+            "@atoms": ALIAS_ATOMS_FOLDER,
             "@components": ALIAS_COMPONENTS_FOLDER,
-            "@utils": ALIAS_UTILS_FOLDER
+            "@utils": ALIAS_UTILS_FOLDER,
+            "@workers": ALIAS_WORKERS_FOLDER
         }
     },
     devServer: {
@@ -79,7 +83,7 @@ const config: Configuration = {
     module: {
         rules: [
             {
-                test: /\.[jt]sx?$/i,
+                test: /\.[jt]sx?$/,
                 exclude: PATH_NODE_MODULES_FOLDER,
                 use: {
                     loader: "builtin:swc-loader",
@@ -102,7 +106,7 @@ const config: Configuration = {
                 }
             },
             {
-                test: /\.s?[ca]ss$/i,
+                test: /\.s?[ca]ss$/,
                 use: {
                     loader: "sass-loader",
                     options: {
@@ -113,7 +117,7 @@ const config: Configuration = {
                 type: "css/auto"
             },
             {
-                test: /\.svg$/i,
+                test: /\.svg$/,
                 use: "@svgr/webpack"
             },
             {
