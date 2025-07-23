@@ -52,7 +52,7 @@ const config: Configuration = {
             cacheGroups: {
                 vendor: {
                     name: "vendors",
-                    chunks: "all",
+                    chunks: "async",
                     test: (module: Module) => (module as NormalModule).resource
                         ?.startsWith(PATH_NODE_MODULES_FOLDER) ?? false
                 }

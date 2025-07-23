@@ -48,7 +48,7 @@ const config: Configuration = {
             cacheGroups: {
                 vendor: {
                     name: "vendors",
-                    chunks: "all",
+                    chunks: "async",
                     test: (module) => (module as NormalModule).resource
                         ?.startsWith(PATH_NODE_MODULES_FOLDER) ?? false
                 }
@@ -132,10 +132,7 @@ const config: Configuration = {
     },
     plugins: [
         new TsCheckerRspackPlugin(),
-        new HtmlRspackPlugin({
-            template: PATH_PUBLIC_ENTRY,
-            filename: "index.html?[fullhash:8]"
-        }),
+        new HtmlRspackPlugin({ template: PATH_PUBLIC_ENTRY }),
         new CopyRspackPlugin({
             patterns: fs.readdirSync(PATH_PUBLIC_FOLDER, { withFileTypes: true }).map((file) => {
                 const location = path.join(file.parentPath, file.name)
