@@ -1,7 +1,7 @@
 import path from "path"
 import fs from "fs"
 import { fileURLToPath } from "url"
-import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin, CopyRspackPlugin, DefinePlugin } from "@rspack/core"
+import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin, CopyRspackPlugin } from "@rspack/core"
 import { TsCheckerRspackPlugin } from "ts-checker-rspack-plugin"
 import ReactRefreshRspackPlugin from "@rspack/plugin-react-refresh"
 import type { Configuration, NormalModule } from "@rspack/core"
