@@ -7,27 +7,27 @@
     "build": "cross-env NODE_ENV=production NODE_OPTIONS='--experimental-transform-types' webpack build --progress"
   },
   "dependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
     "@svgr/webpack": "^8.1.0",
-    "@swc/core": "^1.13.5",
-    "@types/node": "^24.3.1",
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
+    "@swc/core": "^1.14.0",
+    "@types/node": "^24.9.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
     "copy-webpack-plugin": "^13.0.1",
-    "cross-env": "^10.0.0",
+    "cross-env": "^10.1.0",
     "css-loader": "^7.1.2",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
     "html-webpack-plugin": "^5.6.4",
     "mini-css-extract-plugin": "^2.9.4",
-    "sass": "^1.92.1",
-    "sass-loader": "^16.0.5",
+    "sass": "^1.93.2",
+    "sass-loader": "^16.0.6",
     "swc-loader": "^0.2.6",
-    "typescript": "^5.9.2",
-    "webpack": "^5.101.3",
+    "typescript": "^5.9.3",
+    "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
   }
