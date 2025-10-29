@@ -6,7 +6,8 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import CopyWebpackPlugin from "copy-webpack-plugin"
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"
 import type { Configuration, Module, NormalModule } from "webpack"
-import type { Config as SwcConfig } from "@rspack/core/compiled/@swc/types"
+import type { Config as SwcConfig } from "@swc/core"
+import "webpack-dev-server"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
