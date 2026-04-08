@@ -5,7 +5,6 @@ import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspa
 import { TsCheckerRspackPlugin } from "ts-checker-rspack-plugin"
 import ReactRefreshRspackPlugin from "@rspack/plugin-react-refresh"
 import type { Configuration, NormalModule } from "@rspack/core"
-import type { Config as SwcConfig } from "@rspack/core/compiled/@swc/types"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -102,7 +101,7 @@ const config: Configuration = {
                             }
                         },
                         env: { targets }
-                    } as SwcConfig
+                    }
                 }
             },
             {
