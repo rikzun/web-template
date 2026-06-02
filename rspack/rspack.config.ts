@@ -1,10 +1,11 @@
 import path from "path"
 import fs from "fs"
 import { fileURLToPath } from "url"
+import { defineConfig } from "@rspack/cli"
 import { HtmlRspackPlugin, SwcJsMinimizerRspackPlugin, LightningCssMinimizerRspackPlugin, CopyRspackPlugin } from "@rspack/core"
 import { TsCheckerRspackPlugin } from "ts-checker-rspack-plugin"
-import ReactRefreshRspackPlugin from "@rspack/plugin-react-refresh"
-import type { Configuration, NormalModule } from "@rspack/core"
+import { ReactRefreshRspackPlugin } from "@rspack/plugin-react-refresh"
+import type { NormalModule } from "@rspack/core"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -28,9 +29,8 @@ const ALIAS_WORKERS_FOLDER = path.join(PATH_SOURCE_FOLDER, "workers")
 
 const targets = ["last 2 versions", "> 0.2%", "not dead", "Firefox ESR"]
 
-const config: Configuration = {
+export default defineConfig({
     mode: IS_DEVELOPMENT ? "development" : "production",
-    devtool: IS_DEVELOPMENT ? "source-map" : false,
     entry: PATH_SOURCE_ENTRY,
     output: {
         path: PATH_OUTPUT_FOLDER,
@@ -39,7 +39,10 @@ const config: Configuration = {
         publicPath: "auto",
         clean: true
     },
-    cache: true,
+    cache: {
+        type: "persistent",
+        buildDependencies: [__filename, PATH_TS_CONFIG]
+    },
     optimization: {
         runtimeChunk: "single",
         splitChunks: {
@@ -77,7 +80,8 @@ const config: Configuration = {
         open: true,
         compress: true,
         port: 3000,
-        historyApiFallback: true
+        historyApiFallback: true,
+        allowedHosts: "all"
     },
     module: {
         rules: [
@@ -143,14 +147,5 @@ const config: Configuration = {
             }).filter((location) => location.from != PATH_PUBLIC_ENTRY)
         }),
         (IS_DEVELOPMENT && IS_SERVE) && new ReactRefreshRspackPlugin()
-    ],
-    experiments: {
-        css: true,
-        cache: {
-            type: "persistent",
-            buildDependencies: [__filename, PATH_TS_CONFIG]
-        }
-    }
-}
-
-export default config
+    ]
+})

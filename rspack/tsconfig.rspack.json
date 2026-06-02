@@ -1,0 +1,18 @@
+{
+  "include": ["rspack.config.ts"],
+  "compilerOptions": {
+    "composite": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "module": "nodenext",
+    "target": "es2022",
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  }
+}
