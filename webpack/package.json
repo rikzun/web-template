@@ -2,33 +2,41 @@
   "name": "web-template",
   "version": "1.0.0",
   "author": "rikzun",
+  "type": "module",
   "scripts": {
     "start": "cross-env NODE_OPTIONS='--experimental-transform-types' webpack serve --progress",
     "build": "cross-env NODE_ENV=production NODE_OPTIONS='--experimental-transform-types' webpack build --progress"
   },
   "dependencies": {
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
     "@svgr/webpack": "^8.1.0",
-    "@swc/core": "^1.15.24",
-    "@types/node": "^25.5.2",
-    "@types/react": "^19.2.14",
+    "@swc/core": "^1.15.40",
+    "@types/node": "^25.9.1",
+    "@types/react": "^19.2.16",
     "@types/react-dom": "^19.2.3",
     "copy-webpack-plugin": "^14.0.0",
     "cross-env": "^10.1.0",
     "css-loader": "^7.1.4",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
-    "html-webpack-plugin": "^5.6.6",
+    "html-webpack-plugin": "^5.6.7",
     "mini-css-extract-plugin": "^2.10.2",
-    "sass": "^1.99.0",
-    "sass-loader": "^16.0.7",
+    "sass": "^1.100.0",
+    "sass-loader": "^17.0.0",
     "swc-loader": "^0.2.7",
-    "typescript": "^6.0.2",
-    "webpack": "^5.106.0",
-    "webpack-cli": "^7.0.2",
-    "webpack-dev-server": "^5.2.3"
+    "typescript": "^6.0.3",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^7.0.3",
+    "webpack-dev-server": "^5.2.4"
+  },
+  "overrides": {
+    "webpack-dev-server": {
+      "sockjs": {
+        "uuid": "^11.0.0"
+      }
+    }
   }
 }
