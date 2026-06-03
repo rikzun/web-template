@@ -6,15 +6,15 @@ A modern React starter using the latest versions of all key dependencies.
 
 This template provides two build system options: [**Webpack**](./webpack) and [**Rspack**](./rspack).
 
-| Action                          | Webpack | Rspack |
-|---------------------------------|---------|--------|
-| Prod Build (no cache)           | 2848 ms | 570 ms |
-| Prod Build (with cache)         | 1795 ms | 171 ms |
-| Dev server startup (no cache)   | 2151 ms | 931 ms |
-| Dev server startup (with cache) | 776 ms  | 459 ms |
-| Hot update                      | 109 ms  | 29 ms  |
+| Action                          | Webpack | Rspack  |
+|---------------------------------|---------|---------|
+| Prod Build (no cache)           | 3347 ms | 1334 ms |
+| Prod Build (with cache)         | 1118 ms | 379 ms  |
+| Dev server startup (no cache)   | 2238 ms | 1274 ms |
+| Dev server startup (with cache) | 2239 ms | 368 ms  |
+| Hot update                      | 95 ms   | 13 ms   |
 
-> Each value is the median of 20 measurements for each action above.  
+> Each value is the median of 100 measurements for each action above.  
 > In practice, **Rspack** is preferred as it is consistently faster.
 
 **Test machine:**
