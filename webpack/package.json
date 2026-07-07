@@ -28,9 +28,9 @@
     "sass-loader": "^17.0.0",
     "swc-loader": "^0.2.7",
     "typescript": "^6.0.3",
-    "webpack": "^5.108.1",
-    "webpack-cli": "^7.1.0",
-    "webpack-dev-server": "^5.2.5"
+    "webpack": "^5.108.4",
+    "webpack-cli": "^7.2.1",
+    "webpack-dev-server": "^5.2.6"
   },
   "overrides": {
     "webpack-dev-server": {
@@ -38,5 +38,10 @@
         "uuid": "^11.0.0"
       }
     }
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.5.6": true,
+    "@swc/core@1.15.43": true,
+    "core-js-pure@3.49.0": true
   }
 }

@@ -1,21 +1,29 @@
 {
   "include": ["src", "assets.d.ts", "fixes.d.ts"],
   "compilerOptions": {
-    "strict": true,
-    "noImplicitOverride": true,
+    "lib": ["ESNext", "DOM"],
+    "target": "esnext",
+    "module": "Preserve",
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "types": [],
+
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
     "noEmit": true,
     "sourceMap": true,
-    "module": "esnext",
-    "target": "es2022",
-    "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "jsx": "react-jsx",
-    "moduleResolution": "bundler",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+
+    "strict": true,
     "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
     "paths": {
+      "src": ["./src"],
+      "src/*": ["./src/*"],
       "@assets": ["./src/assets"],
       "@assets/*": ["./src/assets/*"],
       "@atoms": ["./src/atoms"],
@@ -25,7 +33,7 @@
       "@utils": ["./src/utils"],
       "@utils/*": ["./src/utils/*"],
       "@workers": ["./src/workers"],
-      "@workers/*": ["./src/workers/*"]
-    }
-  }
+      "@workers/*": ["./src/workers/*"],
+    },
+  },
 }

@@ -29,6 +29,8 @@ const ALIAS_COMPONENTS_FOLDER = path.join(PATH_SOURCE_FOLDER, "components")
 const ALIAS_UTILS_FOLDER = path.join(PATH_SOURCE_FOLDER, "utils")
 const ALIAS_WORKERS_FOLDER = path.join(PATH_SOURCE_FOLDER, "workers")
 
+const targets = ["last 2 versions", "> 0.2%", "not dead", "Firefox ESR"]
+
 const config: Configuration = {
     mode: IS_DEVELOPMENT ? "development" : "production",
     devtool: IS_DEVELOPMENT ? "source-map" : false,
@@ -65,6 +67,7 @@ const config: Configuration = {
         fallback: { process: false },
         modules: [__dirname, PATH_SOURCE_FOLDER, "node_modules"],
         alias: {
+            "src": PATH_SOURCE_FOLDER,
             "@assets": ALIAS_ASSETS_FOLDER,
             "@atoms": ALIAS_ATOMS_FOLDER,
             "@components": ALIAS_COMPONENTS_FOLDER,
@@ -98,7 +101,8 @@ const config: Configuration = {
                                     refresh: IS_DEVELOPMENT && IS_SERVE
                                 }
                             }
-                        }
+                        },
+                        env: { targets }
                     } as SwcConfig
                 }
             },

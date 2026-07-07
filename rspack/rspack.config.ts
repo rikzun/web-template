@@ -68,6 +68,7 @@ export default defineConfig({
         fallback: { process: false },
         modules: [__dirname, PATH_SOURCE_FOLDER, PATH_NODE_MODULES_FOLDER],
         alias: {
+            "src": PATH_SOURCE_FOLDER,
             "@assets": ALIAS_ASSETS_FOLDER,
             "@atoms": ALIAS_ATOMS_FOLDER,
             "@components": ALIAS_COMPONENTS_FOLDER,
